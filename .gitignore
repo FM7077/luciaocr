@@ -1,3 +1,6 @@
 node_modules/
 .npm-cache/
 dist/
+/DECISIONS.md
+/TODO.md
+/PLAN.md

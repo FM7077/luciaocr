@@ -282,7 +282,6 @@ throw new OCRError("PARSE_ERROR", "Failed to parse OCR result");
 
 - 仓库总览：[README.md](../../README.md)
 - Web SDK：[packages/sdk-web/README.md](../sdk-web/README.md)
-- 当前待办：[TODO.md](../../TODO.md)
 
 ## License
 

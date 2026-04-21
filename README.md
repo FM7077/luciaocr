@@ -269,9 +269,6 @@ npm run release:check
 
 - Web SDK 说明：[packages/sdk-web/README.md](./packages/sdk-web/README.md)
 - Web demo 说明：[apps/demo-web/README.md](./apps/demo-web/README.md)
-- 项目决策：[DECISIONS.md](./DECISIONS.md)
-- 规划草案：[PLAN.md](./PLAN.md)
-- 当前待办：[TODO.md](./TODO.md)
 
 ## License
 
