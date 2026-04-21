@@ -1,0 +1,44 @@
+{
+  "name": "@fm7077/luciaocr-core",
+  "version": "1.0.0",
+  "private": false,
+  "type": "module",
+  "description": "Shared OCR parsers, validators, formatters, and error models for luciaocr.",
+  "license": "MIT",
+  "author": "樊天成",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FM7077/luciaocr.git",
+    "directory": "packages/sdk-core"
+  },
+  "homepage": "https://github.com/FM7077/luciaocr/tree/main/packages/sdk-core",
+  "bugs": {
+    "url": "https://github.com/FM7077/luciaocr/issues"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "node ../../scripts/build-sdk-core.mjs",
+    "clean": "node ../../scripts/clean-package.mjs dist",
+    "lint": "echo sdk-core lint placeholder",
+    "test": "node --test test/*.test.js",
+    "typecheck": "npm run build --silent && tsc -p tsconfig.typecheck.json --noEmit"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

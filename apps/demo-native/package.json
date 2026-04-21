@@ -1,0 +1,22 @@
+{
+  "name": "@fm7077/demo-native",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "build": "echo demo-native build placeholder",
+    "clean": "echo demo-native clean placeholder",
+    "lint": "echo demo-native lint placeholder",
+    "test": "echo demo-native test placeholder",
+    "typecheck": "echo demo-native typecheck placeholder"
+  },
+  "dependencies": {
+    "@fm7077/lucaiocr-rn": "file:../../packages/sdk-react-native",
+    "@react-native-clipboard/clipboard": "^1.15.0",
+    "react": "^18.3.1",
+    "react-native": "^0.74.5",
+    "react-native-image-picker": "^7.1.2",
+    "react-native-webview": "^13.12.4"
+  }
+}

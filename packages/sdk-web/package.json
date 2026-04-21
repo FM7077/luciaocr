@@ -1,0 +1,58 @@
+{
+  "name": "@fm7077/luciaocr-r",
+  "version": "1.0.1",
+  "private": false,
+  "type": "module",
+  "description": "Browser OCR runtime with bundled PaddleOCR assets and a stable iframe bridge.",
+  "keywords": [
+    "ocr",
+    "offline-ocr",
+    "paddleocr",
+    "browser",
+    "react"
+  ],
+  "license": "MIT",
+  "author": "樊天成",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FM7077/luciaocr.git",
+    "directory": "packages/sdk-web"
+  },
+  "homepage": "https://github.com/FM7077/luciaocr/tree/main/packages/sdk-web",
+  "bugs": {
+    "url": "https://github.com/FM7077/luciaocr/issues"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "THIRD_PARTY_NOTICES.md",
+    "docs"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "node ../../scripts/build-sdk-web.mjs",
+    "clean": "node ../../scripts/clean-package.mjs dist",
+    "lint": "echo sdk-web lint placeholder",
+    "test": "node --test test/*.test.js",
+    "typecheck": "npm run build --silent && tsc -p tsconfig.typecheck.json --noEmit"
+  },
+  "devDependencies": {
+    "@fm7077/luciaocr-core": "1.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

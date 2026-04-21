@@ -1,0 +1,13 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "allowJs": false,
+    "checkJs": false,
+    "lib": ["DOM", "ES2020"],
+    "noEmit": true,
+    "strict": true
+  },
+  "files": [
+    "./test-d/index-typecheck.ts"
+  ]
+}

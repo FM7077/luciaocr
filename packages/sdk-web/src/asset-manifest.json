@@ -1,0 +1,19 @@
+{
+  "engineHtml": "ocr.html",
+  "scripts": [
+    "ort.min.js",
+    "opencv.js",
+    "esearch-ocr.js"
+  ],
+  "wasm": [
+    "ort-wasm-simd-threaded.wasm",
+    "ort-wasm-simd-threaded.mjs",
+    "ort-wasm-simd-threaded.jsep.wasm",
+    "ort-wasm-simd-threaded.jsep.mjs"
+  ],
+  "models": [
+    "models/ppocr_det.onnx",
+    "models/ppocr_rec.onnx",
+    "models/ppocr_keys_v1.txt"
+  ]
+}

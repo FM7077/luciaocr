@@ -1,0 +1,31 @@
+{
+  "name": "luciaocr-workspace",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "node ./scripts/run-workspaces.mjs build",
+    "clean": "node ./scripts/run-workspaces.mjs clean",
+    "lint": "node ./scripts/run-workspaces.mjs lint",
+    "test": "node ./scripts/run-workspaces.mjs test",
+    "typecheck": "node ./scripts/run-workspaces.mjs typecheck",
+    "release:check": "node ./scripts/release-check.mjs"
+  },
+  "keywords": [],
+  "author": "FM7077",
+  "license": "MIT",
+  "description": "luciaocr workspace for the sdk-core, sdk-web, and demo-web packages.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FM7077/OCRer-React.git"
+  },
+  "dependencies": {
+    "tesseract.js": "^7.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}

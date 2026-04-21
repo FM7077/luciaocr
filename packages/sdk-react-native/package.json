@@ -1,0 +1,47 @@
+{
+  "name": "@fm7077/lucaiocr-rn",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "React Native OCR bridge package for luciaocr.",
+  "license": "MIT",
+  "author": "樊天成",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FM7077/luciaocr.git",
+    "directory": "packages/sdk-react-native"
+  },
+  "homepage": "https://github.com/FM7077/luciaocr/tree/main/packages/sdk-react-native",
+  "bugs": {
+    "url": "https://github.com/FM7077/luciaocr/issues"
+  },
+  "main": "./src/index.js",
+  "module": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "import": "./src/index.js",
+      "default": "./src/index.js"
+    }
+  },
+  "files": [
+    "src"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "echo sdk-react-native build placeholder",
+    "clean": "echo sdk-react-native clean placeholder",
+    "lint": "echo sdk-react-native lint placeholder",
+    "test": "echo sdk-react-native test placeholder",
+    "typecheck": "echo sdk-react-native typecheck placeholder"
+  },
+  "dependencies": {
+    "@fm7077/luciaocr-core": "file:../sdk-core"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-native": ">=0.73",
+    "react-native-webview": ">=13"
+  }
+}
