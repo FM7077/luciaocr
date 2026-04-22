@@ -6,6 +6,12 @@
 
 If you are looking for an offline OCR SDK for ID card recognition, driver license recognition, bank card recognition, OCR extraction, OCR validation, browser OCR, Web OCR, or frontend OCR workflows, this repository is organized around those exact capabilities.
 
+## Source Attribution
+
+The offline OCR capability organization and engineering work in this project references and acknowledges the source project:
+
+- [`ftcvictory/local-OCR`](https://github.com/ftcvictory/local-OCR)
+
 ## Core Capabilities
 
 - Offline OCR that runs in the browser without calling an online recognition API

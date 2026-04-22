@@ -6,6 +6,12 @@
 
 如果你正在寻找支持身份证识别、驾驶证识别、银行卡识别、OCR 提取、OCR 校验、离线 OCR SDK、浏览器 OCR、Web OCR 或前端 OCR 的方案，这个仓库就是围绕这些能力组织的。
 
+## 来源说明
+
+本项目的离线 OCR 能力整理与工程化封装，参考并致敬来源项目：
+
+- [`ftcvictory/local-OCR`](https://github.com/ftcvictory/local-OCR)
+
 ## 核心能力
 
 - 离线 OCR：浏览器端本地运行，不依赖在线识别接口
