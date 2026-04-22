@@ -1,22 +1,22 @@
 # @luciaocr/react
 
-[English](./README.en.md)
+[简体中文](./README.md)
 
-`@luciaocr/react` 是基于 `@luciaocr/web` 的 React 封装，适合在 React 项目中接入离线 OCR、身份证识别、驾驶证识别、银行卡识别和通用文本提取。
+`@luciaocr/react` is the React wrapper built on top of `@luciaocr/web`. It is intended for React applications that need offline OCR, ID card recognition, driver license recognition, bank card recognition, and general text extraction.
 
-## 提供内容
+## What It Provides
 
-- 重新导出 `@luciaocr/web` 的浏览器 OCR 能力
+- Re-exports the browser OCR capability from `@luciaocr/web`
 - `createReactOCR(options?)`
 - `useOCR(options?)`
 
-## 安装
+## Install
 
 ```bash
 npm install @luciaocr/react
 ```
 
-## 示例
+## Example
 
 ```jsx
 import { useOCR } from "@luciaocr/react";

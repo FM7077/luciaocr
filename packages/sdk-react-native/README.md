@@ -1,40 +1,29 @@
 # @luciaocr/react-native
 
-React Native runtime package for `luciaocr`.
+[English](./README.en.md)
 
-GitHub: [`FM7077/luciaocr`](https://github.com/FM7077/luciaocr)
+`@luciaocr/react-native` 是 `luciaocr` 的 React Native 运行时封装，通过隐藏 `WebView` 加载离线 OCR 运行时，实现移动端身份证识别、驾驶证识别、银行卡识别和通用文本 OCR 识别。
 
-## Acknowledgement
+## 提供内容
 
-This package is part of the React-oriented refactor of
-[`ftcvictory/local-OCR`](https://github.com/ftcvictory/local-OCR),
-with the React Native bridge and packaging adapted on top of that offline OCR foundation.
+- `ReactNativeOCR` 控制器
+- `OCRWebView` 隐藏式 WebView 容器
+- 打包进包内的 OCR 运行时资源
+- 与 Web 版本对齐的初始化、识别和桥接消息协议
 
-## What it provides
-
-- `ReactNativeOCR` controller with the same public lifecycle as `sdk-react`
-- `OCRWebView` reusable hidden WebView container
-- OCR runtime assets bundled inside the package
-- bridge protocol aligned with `sdk-react`:
-  - `OCR_READY`
-  - `OCR_PROGRESS`
-  - `OCR_RESULT`
-  - `OCR_ERROR`
-  - `RECOGNIZE_REQUEST`
-
-## Peer dependencies
+## Peer Dependencies
 
 - `react`
 - `react-native`
 - `react-native-webview`
 
-## Metro setup
+## Metro 配置
 
-Because the runtime includes `onnx`, `wasm`, `mjs`, `txt`, and `html` assets, the host app must add them to Metro `assetExts`.
+运行时包含 `onnx`、`wasm`、`mjs`、`txt` 和 `html` 资源，宿主应用需要把它们加入 Metro 的 `assetExts`。
 
-See `apps/demo-native/metro.config.cjs` for the expected setup.
+可参考：[apps/demo-native/metro.config.cjs](../../apps/demo-native/metro.config.cjs)
 
-## Minimal usage
+## 示例
 
 ```jsx
 import React from "react";
@@ -46,3 +35,13 @@ export default function Screen() {
   return <OCRWebView controller={ocr} />;
 }
 ```
+
+## 说明
+
+- 当前仓库提供的是 React Native OCR 封装与示例骨架
+- 真机集成前仍需准备宿主 App 的 Android/iOS 工程
+- 适合做离线 OCR、OCR 字段提取和 OCR 校验的跨端接入
+
+## License
+
+[MIT](../../LICENSE)

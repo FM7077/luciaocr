@@ -1,8 +1,5 @@
 # @luciaocr/demo-react
 
-React + Vite demo for validating `@luciaocr/react`.
+[English](./README.en.md)
 
-## 致敬来源
-
-这个 demo 所验证的离线 OCR 能力，致敬来源项目
-[`ftcvictory/local-OCR`](https://github.com/ftcvictory/local-OCR)。
+`@luciaocr/demo-react` 是用于验证 `@luciaocr/react` 的 React + Vite 示例应用，适合本地联调身份证 OCR、驾驶证 OCR、银行卡 OCR 和通用文本识别流程。

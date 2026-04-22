@@ -38,7 +38,7 @@
     "typecheck": "echo sdk-vue typecheck placeholder"
   },
   "dependencies": {
-    "@luciaocr/web": "file:../sdk-web"
+    "@luciaocr/web": "^1.0.1"
   },
   "peerDependencies": {
     "vue": ">=3"

@@ -38,11 +38,11 @@
     "typecheck": "echo sdk-angular typecheck placeholder"
   },
   "dependencies": {
-    "@luciaocr/web": "file:../sdk-web"
+    "@luciaocr/web": "^1.0.1"
   },
   "peerDependencies": {
-    "@angular/core": "^20.0.0",
-    "@angular/common": "^20.0.0"
+    "@angular/core": ">=15",
+    "@angular/common": ">=15"
   },
   "publishConfig": {
     "access": "public"

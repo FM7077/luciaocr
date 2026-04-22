@@ -1,22 +1,22 @@
 # @luciaocr/vue
 
-[English](./README.en.md)
+[简体中文](./README.md)
 
-`@luciaocr/vue` 是基于 `@luciaocr/web` 的 Vue 3 封装，适合在 Vue 应用中接入离线 OCR、身份证识别、驾驶证识别、银行卡识别和通用文本提取。
+`@luciaocr/vue` is the Vue 3 wrapper built on top of `@luciaocr/web`. It is designed for Vue applications that need offline OCR, ID card recognition, driver license recognition, bank card recognition, and general text extraction.
 
-## 提供内容
+## What It Provides
 
-- 重新导出 `@luciaocr/web` 的浏览器 OCR 能力
+- Re-exports the browser OCR capability from `@luciaocr/web`
 - `createVueOCR(options?)`
 - `useOCR(options?)`
 
-## 安装
+## Install
 
 ```bash
 npm install @luciaocr/vue
 ```
 
-## 示例
+## Example
 
 ```js
 import { useOCR } from "@luciaocr/vue";

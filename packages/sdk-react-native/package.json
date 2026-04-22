@@ -1,7 +1,7 @@
 {
   "name": "@luciaocr/react-native",
   "version": "1.0.0",
-  "private": true,
+  "private": false,
   "type": "module",
   "description": "React Native OCR bridge package for luciaocr.",
   "license": "MIT",
@@ -37,11 +37,14 @@
     "typecheck": "echo sdk-react-native typecheck placeholder"
   },
   "dependencies": {
-    "@luciaocr/core": "file:../sdk-core"
+    "@luciaocr/core": "^1.0.0"
   },
   "peerDependencies": {
-    "react": ">=18",
-    "react-native": ">=0.73",
-    "react-native-webview": ">=13"
+    "react": ">=16.8",
+    "react-native": ">=0.60",
+    "react-native-webview": ">=7.4.1"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
