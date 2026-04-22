@@ -7,7 +7,7 @@ import {
   parseGeneral,
   parseIdCard,
   validateBankCard,
-} from "@luciaocr/luciaocr-core";
+} from "@luciaocr/core";
 
 const general = parseGeneral("电话 13800138000");
 general.valid satisfies boolean;

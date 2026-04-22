@@ -4,7 +4,7 @@ import {
   initOCR,
   isInitialized,
   recognize,
-} from "@luciaocr/luciaocr-r";
+} from "@luciaocr/react";
 
 const templates = [
   { value: "general", label: "通用文本" },
@@ -121,7 +121,7 @@ export default function App() {
         <p className="eyebrow">luciaocr Demo Web</p>
         <h1>离线 OCR Web 验证台</h1>
         <p className="hero-copy">
-          用这页直接验证 `@luciaocr/luciaocr-r` 的资源加载、引擎初始化、模板识别和结构化结果。
+          用这页直接验证 `@luciaocr/react` 的资源加载、引擎初始化、模板识别和结构化结果。
         </p>
         <div className={`status-pill status-${status}`}>
           {statusText} {isInitialized() ? "· Ready" : ""}

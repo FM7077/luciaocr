@@ -1,4 +1,10 @@
-import React, { forwardRef, useImperativeHandle, useMemo, useRef } from "react";
+import React, {
+  createElement,
+  forwardRef,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+} from "react";
 import { View, StyleSheet } from "react-native";
 import { WebView } from "react-native-webview";
 import {
@@ -7,7 +13,7 @@ import {
   parseDriverLicenseAuto,
   parseGeneral,
   parseIdCard,
-} from "@luciaocr/luciaocr-core";
+} from "@luciaocr/core";
 import createEngineDocument from "./engineDocument.js";
 import {
   createRuntimeAssetResolver,
@@ -365,23 +371,24 @@ export const OCRWebView = forwardRef(function OCRWebView(
       getController: () => resolvedController,
     }));
 
-    return (
-      <View style={[styles.container, style]}>
-        <WebView
-          ref={(instance) => {
-            webViewRef.current = instance;
-            resolvedController.setWebViewRef(instance);
-          }}
-          originWhitelist={["*"]}
-          javaScriptEnabled
-          allowFileAccess
-          allowingReadAccessToURL={resolvedController.runtimeAssets.baseUrl || undefined}
-          mixedContentMode="always"
-          source={source}
-          onMessage={(event) => resolvedController.handleMessage(event)}
-          {...webViewProps}
-        />
-      </View>
+    return createElement(
+      View,
+      { style: [styles.container, style] },
+      createElement(WebView, {
+        ref: (instance) => {
+          webViewRef.current = instance;
+          resolvedController.setWebViewRef(instance);
+        },
+        originWhitelist: ["*"],
+        javaScriptEnabled: true,
+        allowFileAccess: true,
+        allowingReadAccessToURL:
+          resolvedController.runtimeAssets.baseUrl || undefined,
+        mixedContentMode: "always",
+        source,
+        onMessage: (event) => resolvedController.handleMessage(event),
+        ...webViewProps,
+      })
     );
   }
 );

@@ -2,7 +2,7 @@
 
 GitHub: [`FM7077/luciaocr`](https://github.com/FM7077/luciaocr)
 
-`@luciaocr/luciaocr-r` redistributes third-party runtime assets required for offline OCR.
+`@luciaocr/web` redistributes third-party runtime assets required for offline OCR.
 
 ## Included runtime assets
 

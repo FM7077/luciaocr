@@ -1,6 +1,6 @@
 # @luciaocr/demo-native
 
-React Native demo app skeleton for `@luciaocr/lucaiocr-rn`.
+React Native demo app skeleton for `@luciaocr/react-native`.
 
 ## Acknowledgement
 

@@ -14,7 +14,7 @@ import { launchImageLibrary } from "react-native-image-picker";
 import {
   OCRWebView,
   createReactNativeOCR,
-} from "@luciaocr/lucaiocr-rn";
+} from "@luciaocr/react-native";
 
 const templates = [
   { value: "general", label: "General" },

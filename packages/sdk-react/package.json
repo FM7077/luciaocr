@@ -1,18 +1,10 @@
 {
-  "name": "@luciaocr/luciaocr-r",
-  "version": "1.0.1",
+  "name": "@luciaocr/react",
+  "version": "1.0.0",
   "private": false,
   "type": "module",
-  "description": "Browser OCR runtime with bundled PaddleOCR assets and a stable iframe bridge.",
-  "keywords": [
-    "ocr",
-    "offline-ocr",
-    "paddleocr",
-    "browser",
-    "react"
-  ],
+  "description": "React-friendly luciaocr package built on top of @luciaocr/web.",
   "license": "MIT",
-  "author": "樊天成",
   "repository": {
     "type": "git",
     "url": "https://github.com/FM7077/luciaocr.git",
@@ -22,35 +14,34 @@
   "bugs": {
     "url": "https://github.com/FM7077/luciaocr/issues"
   },
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./src/index.js",
+  "module": "./src/index.js",
+  "types": "./src/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "default": "./dist/index.js"
+      "types": "./src/index.d.ts",
+      "import": "./src/index.js",
+      "default": "./src/index.js"
     },
     "./package.json": "./package.json"
   },
   "files": [
-    "dist",
-    "README.md",
-    "LICENSE",
-    "CHANGELOG.md",
-    "THIRD_PARTY_NOTICES.md",
-    "docs"
+    "src",
+    "README.md"
   ],
   "sideEffects": false,
   "scripts": {
-    "build": "node ../../scripts/build-sdk-react.mjs",
-    "clean": "node ../../scripts/clean-package.mjs dist",
+    "build": "echo sdk-react build placeholder",
+    "clean": "echo sdk-react clean placeholder",
     "lint": "echo sdk-react lint placeholder",
-    "test": "node --test test/*.test.js",
-    "typecheck": "npm run build --silent && tsc -p tsconfig.typecheck.json --noEmit"
+    "test": "echo sdk-react test placeholder",
+    "typecheck": "echo sdk-react typecheck placeholder"
   },
-  "devDependencies": {
-    "@luciaocr/luciaocr-core": "1.0.0"
+  "dependencies": {
+    "@luciaocr/web": "file:../sdk-web"
+  },
+  "peerDependencies": {
+    "react": ">=18"
   },
   "publishConfig": {
     "access": "public"

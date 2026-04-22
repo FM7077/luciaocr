@@ -1,6 +1,6 @@
-# @luciaocr/demo-web
+# @luciaocr/demo-react
 
-React + Vite demo for validating `@luciaocr/luciaocr-r`.
+React + Vite demo for validating `@luciaocr/react`.
 
 ## 致敬来源
 

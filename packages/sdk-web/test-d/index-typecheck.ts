@@ -8,7 +8,7 @@ import {
   isInitialized,
   recognize,
   runtimeAssets,
-} from "@luciaocr/luciaocr-r";
+} from "@luciaocr/web";
 
 SDK_WEB_VERSION satisfies string;
 runtimeAssets.engineHtml satisfies string;

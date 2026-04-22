@@ -2,7 +2,7 @@
 
 GitHub: [`FM7077/luciaocr`](https://github.com/FM7077/luciaocr)
 
-`@luciaocr/luciaocr-r` includes its runtime assets inside the published package.
+`@luciaocr/web` includes its runtime assets inside the published package.
 
 ## Default behavior
 

@@ -1,4 +1,4 @@
-# @luciaocr/lucaiocr-rn
+# @luciaocr/react-native
 
 React Native runtime package for `luciaocr`.
 
@@ -38,7 +38,7 @@ See `apps/demo-native/metro.config.cjs` for the expected setup.
 
 ```jsx
 import React from "react";
-import { OCRWebView, createReactNativeOCR } from "@luciaocr/lucaiocr-rn";
+import { OCRWebView, createReactNativeOCR } from "@luciaocr/react-native";
 
 const ocr = createReactNativeOCR();
 

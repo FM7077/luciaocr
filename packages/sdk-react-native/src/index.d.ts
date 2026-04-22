@@ -2,7 +2,7 @@ import type { ComponentType } from "react";
 import type {
   OCRResult,
   OCRTemplate,
-} from "@luciaocr/luciaocr-core";
+} from "@luciaocr/core";
 
 export interface ReactNativeImageSource {
   uri?: string;

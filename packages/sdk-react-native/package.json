@@ -1,11 +1,11 @@
 {
-  "name": "@luciaocr/lucaiocr-rn",
+  "name": "@luciaocr/react-native",
   "version": "1.0.0",
   "private": true,
   "type": "module",
   "description": "React Native OCR bridge package for luciaocr.",
   "license": "MIT",
-  "author": "樊天成",
+  "author": "FM7077",
   "repository": {
     "type": "git",
     "url": "https://github.com/FM7077/luciaocr.git",
@@ -37,7 +37,7 @@
     "typecheck": "echo sdk-react-native typecheck placeholder"
   },
   "dependencies": {
-    "@luciaocr/luciaocr-core": "file:../sdk-core"
+    "@luciaocr/core": "file:../sdk-core"
   },
   "peerDependencies": {
     "react": ">=18",

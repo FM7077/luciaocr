@@ -4,11 +4,11 @@ const npmCommand = process.platform === "win32" ? "npm.cmd" : "npm";
 const task = process.argv[2];
 
 const taskToWorkspaces = {
-  build: ["@luciaocr/luciaocr-core", "@luciaocr/luciaocr-r", "@luciaocr/demo-web"],
-  clean: ["@luciaocr/luciaocr-core", "@luciaocr/luciaocr-r", "@luciaocr/demo-web"],
-  lint: ["@luciaocr/luciaocr-core", "@luciaocr/luciaocr-r", "@luciaocr/demo-web"],
-  test: ["@luciaocr/luciaocr-core", "@luciaocr/luciaocr-r"],
-  typecheck: ["@luciaocr/luciaocr-core", "@luciaocr/luciaocr-r"],
+  build: ["@luciaocr/core", "@luciaocr/web", "@luciaocr/react", "@luciaocr/demo-react"],
+  clean: ["@luciaocr/core", "@luciaocr/web", "@luciaocr/react", "@luciaocr/demo-react"],
+  lint: ["@luciaocr/core", "@luciaocr/web", "@luciaocr/react", "@luciaocr/demo-react"],
+  test: ["@luciaocr/core", "@luciaocr/web", "@luciaocr/react"],
+  typecheck: ["@luciaocr/core", "@luciaocr/web", "@luciaocr/react"],
 };
 
 const workspaces = taskToWorkspaces[task];
