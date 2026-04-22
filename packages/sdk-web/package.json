@@ -50,8 +50,8 @@
     "test": "node --test test/*.test.js",
     "typecheck": "npm run build --silent && tsc -p tsconfig.typecheck.json --noEmit"
   },
-  "devDependencies": {
-    "@luciaocr/core": "1.0.0"
+  "dependencies": {
+    "@luciaocr/core": "^1.0.0"
   },
   "publishConfig": {
     "access": "public"
