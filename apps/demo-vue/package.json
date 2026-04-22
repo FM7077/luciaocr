@@ -1,0 +1,24 @@
+{
+  "name": "@luciaocr/demo-vue",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "clean": "echo demo-vue clean placeholder",
+    "dev": "vite",
+    "lint": "echo demo-vue lint placeholder",
+    "test": "echo demo-vue test placeholder",
+    "typecheck": "echo demo-vue typecheck placeholder"
+  },
+  "dependencies": {
+    "@luciaocr/vue": "file:../../packages/sdk-vue",
+    "opencv.js": "^1.2.1",
+    "vue": "^3.5.13"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "typescript": "^5.8.3",
+    "vite": "^5.4.19"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "name": "@luciaocr/vue",
+  "version": "1.0.0",
+  "private": false,
+  "type": "module",
+  "description": "Vue-friendly luciaocr package built on top of @luciaocr/web.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FM7077/luciaocr.git",
+    "directory": "packages/sdk-vue"
+  },
+  "homepage": "https://github.com/FM7077/luciaocr/tree/main/packages/sdk-vue",
+  "bugs": {
+    "url": "https://github.com/FM7077/luciaocr/issues"
+  },
+  "main": "./src/index.js",
+  "module": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "import": "./src/index.js",
+      "default": "./src/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "echo sdk-vue build placeholder",
+    "clean": "echo sdk-vue clean placeholder",
+    "lint": "echo sdk-vue lint placeholder",
+    "test": "echo sdk-vue test placeholder",
+    "typecheck": "echo sdk-vue typecheck placeholder"
+  },
+  "dependencies": {
+    "@luciaocr/web": "file:../sdk-web"
+  },
+  "peerDependencies": {
+    "vue": ">=3"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

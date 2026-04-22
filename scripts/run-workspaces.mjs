@@ -4,11 +4,44 @@ const npmCommand = process.platform === "win32" ? "npm.cmd" : "npm";
 const task = process.argv[2];
 
 const taskToWorkspaces = {
-  build: ["@luciaocr/core", "@luciaocr/web", "@luciaocr/react", "@luciaocr/demo-react"],
-  clean: ["@luciaocr/core", "@luciaocr/web", "@luciaocr/react", "@luciaocr/demo-react"],
-  lint: ["@luciaocr/core", "@luciaocr/web", "@luciaocr/react", "@luciaocr/demo-react"],
+  build: [
+    "@luciaocr/core",
+    "@luciaocr/web",
+    "@luciaocr/react",
+    "@luciaocr/vue",
+    "@luciaocr/angular",
+    "@luciaocr/demo-react",
+    "@luciaocr/demo-vue",
+    "@luciaocr/demo-angular",
+  ],
+  clean: [
+    "@luciaocr/core",
+    "@luciaocr/web",
+    "@luciaocr/react",
+    "@luciaocr/vue",
+    "@luciaocr/angular",
+    "@luciaocr/demo-react",
+    "@luciaocr/demo-vue",
+    "@luciaocr/demo-angular",
+  ],
+  lint: [
+    "@luciaocr/core",
+    "@luciaocr/web",
+    "@luciaocr/react",
+    "@luciaocr/vue",
+    "@luciaocr/angular",
+    "@luciaocr/demo-react",
+    "@luciaocr/demo-vue",
+    "@luciaocr/demo-angular",
+  ],
   test: ["@luciaocr/core", "@luciaocr/web", "@luciaocr/react"],
-  typecheck: ["@luciaocr/core", "@luciaocr/web", "@luciaocr/react"],
+  typecheck: [
+    "@luciaocr/core",
+    "@luciaocr/web",
+    "@luciaocr/react",
+    "@luciaocr/vue",
+    "@luciaocr/angular",
+  ],
 };
 
 const workspaces = taskToWorkspaces[task];

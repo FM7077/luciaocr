@@ -17,7 +17,7 @@
   "keywords": [],
   "author": "FM7077",
   "license": "MIT",
-  "description": "luciaocr workspace for the core, web, react, react-native, and demo-react packages.",
+  "description": "luciaocr workspace for the core, web, react, vue, angular, react-native, and demo apps.",
   "repository": {
     "type": "git",
     "url": "https://github.com/FM7077/OCRer-React.git"
