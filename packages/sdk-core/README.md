@@ -6,7 +6,7 @@
 
 ## 能力概览
 
-- 解析 `general`、`idCard`、`bankCard`、`driverLicense`
+- 解析 `general`、`idCard-CN`、`bankCard`、`driverLicense-CN`
 - 提取手机号、邮箱、日期、数字、关键词等信息
 - 校验身份证、银行卡、驾驶证相关字段
 - 提供统一错误类型 `OCRError`

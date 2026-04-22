@@ -8,7 +8,7 @@
 
 - 浏览器端离线 OCR，无需在线接口
 - 内置运行时资源与默认资源解析逻辑
-- 支持 `general`、`idCard`、`bankCard`、`driverLicense`
+- 支持 `general`、`idCard-CN`、`bankCard`、`driverLicense-CN`
 - 直接返回结构化结果，便于字段提取和表单回填
 - 支持自定义资源路径、超时和初始化进度回调
 
@@ -30,7 +30,7 @@ await initOCR({
   },
 });
 
-const result = await recognize(file, "idCard");
+const result = await recognize(file, "idCard-CN");
 console.log(result);
 
 destroyOCR();
@@ -53,9 +53,9 @@ ocr.destroy();
 ## 支持的识别模板
 
 - `general`
-- `idCard`
+- `idCard-CN`
 - `bankCard`
-- `driverLicense`
+- `driverLicense-CN`
 
 ## 适用场景
 

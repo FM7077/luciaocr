@@ -6,7 +6,7 @@
 
 ## Overview
 
-- Parse `general`, `idCard`, `bankCard`, and `driverLicense`
+- Parse `general`, `idCard-CN`, `bankCard`, and `driverLicense-CN`
 - Extract phones, emails, dates, numbers, and keywords
 - Validate ID card, bank card, and driver license related fields
 - Provide the shared `OCRError` type

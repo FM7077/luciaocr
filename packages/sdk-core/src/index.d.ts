@@ -1,8 +1,8 @@
 export type OCRTemplate =
   | "general"
-  | "idCard"
+  | "idCard-CN"
   | "bankCard"
-  | "driverLicense";
+  | "driverLicense-CN";
 
 export declare const OCR_TEMPLATES: OCRTemplate[];
 

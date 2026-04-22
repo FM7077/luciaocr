@@ -113,9 +113,9 @@ const ocr = createWebOCR({
 
 await ocr.init();
 
-const idCardResult = await ocr.recognize(file, "idCard");
+const idCardResult = await ocr.recognize(file, "idCard-CN");
 const bankCardResult = await ocr.recognize(file, "bankCard");
-const driverLicenseResult = await ocr.recognize(file, "driverLicense");
+const driverLicenseResult = await ocr.recognize(file, "driverLicense-CN");
 
 console.log(idCardResult, bankCardResult, driverLicenseResult);
 

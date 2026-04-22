@@ -1,8 +1,8 @@
 export const OCR_TEMPLATES = [
   "general",
-  "idCard",
+  "idCard-CN",
   "bankCard",
-  "driverLicense",
+  "driverLicense-CN",
 ];
 
 export {

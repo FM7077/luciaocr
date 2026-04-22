@@ -20,9 +20,9 @@ Supported `input` values:
 Supported `template` values:
 
 - `general`
-- `idCard`
+- `idCard-CN`
 - `bankCard`
-- `driverLicense`
+- `driverLicense-CN`
 
 ## `destroyOCR()`
 

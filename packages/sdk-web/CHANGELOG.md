@@ -14,7 +14,7 @@ Repacked `@luciaocr/web` for npm publish after `1.0.0` was already used.
 Initial public release candidate for `@luciaocr/web`.
 
 - browser-only offline OCR SDK with bundled runtime assets
-- built-in templates: `general`, `idCard`, `bankCard`, `driverLicense`
+- built-in templates: `general`, `idCard-CN`, `bankCard`, `driverLicense-CN`
 - stable public API: `initOCR`, `recognize`, `destroyOCR`, `createWebOCR`
 - self-contained package build for standalone npm distribution
 - packaged runtime assets: `onnx`, `wasm`, OCR dictionary, engine HTML/JS

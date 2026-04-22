@@ -31,11 +31,11 @@ function parseTemplateResult(template, payload) {
   let parsed;
 
   try {
-    if (template === "idCard") {
+    if (template === "idCard-CN") {
       parsed = parseIdCard(rawText, lines);
     } else if (template === "bankCard") {
       parsed = parseBankCard(rawText);
-    } else if (template === "driverLicense") {
+    } else if (template === "driverLicense-CN") {
       parsed = parseDriverLicenseAuto(rawText, lines);
     } else {
       parsed = parseGeneral(rawText);

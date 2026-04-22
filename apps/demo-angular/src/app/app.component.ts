@@ -85,9 +85,9 @@ export class AppComponent implements OnDestroy {
   readonly ocr = injectLuciaocr();
   readonly templates = [
     { value: "general", label: "通用文本" },
-    { value: "idCard", label: "身份证" },
+    { value: "idCard-CN", label: "身份证" },
     { value: "bankCard", label: "银行卡" },
-    { value: "driverLicense", label: "驾驶证" },
+    { value: "driverLicense-CN", label: "驾驶证" },
   ];
 
   template: OCRTemplate = "general";

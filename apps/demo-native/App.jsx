@@ -18,9 +18,9 @@ import {
 
 const templates = [
   { value: "general", label: "General" },
-  { value: "idCard", label: "ID Card" },
+  { value: "idCard-CN", label: "ID Card" },
   { value: "bankCard", label: "Bank Card" },
-  { value: "driverLicense", label: "Driver License" },
+  { value: "driverLicense-CN", label: "Driver License" },
 ];
 
 export default function App() {

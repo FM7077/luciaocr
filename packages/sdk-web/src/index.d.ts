@@ -1,8 +1,8 @@
 export type OCRTemplate =
   | "general"
-  | "idCard"
+  | "idCard-CN"
   | "bankCard"
-  | "driverLicense";
+  | "driverLicense-CN";
 
 export interface OCRResultBase {
   text?: string;

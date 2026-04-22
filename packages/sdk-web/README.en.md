@@ -8,7 +8,7 @@
 
 - Offline OCR in the browser without an online API
 - Bundled runtime assets with default asset resolution
-- Support for `general`, `idCard`, `bankCard`, and `driverLicense`
+- Support for `general`, `idCard-CN`, `bankCard`, and `driverLicense-CN`
 - Structured results for field extraction and form autofill
 - Configurable asset paths, timeouts, and progress callbacks
 
@@ -30,7 +30,7 @@ await initOCR({
   },
 });
 
-const result = await recognize(file, "idCard");
+const result = await recognize(file, "idCard-CN");
 console.log(result);
 
 destroyOCR();
@@ -53,9 +53,9 @@ ocr.destroy();
 ## Supported Templates
 
 - `general`
-- `idCard`
+- `idCard-CN`
 - `bankCard`
-- `driverLicense`
+- `driverLicense-CN`
 
 ## Use Cases
 

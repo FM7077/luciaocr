@@ -28,7 +28,7 @@ export default function OCRPanel() {
 
   async function onPick(file) {
     await ocr.init();
-    const result = await ocr.recognize(file, "idCard");
+    const result = await ocr.recognize(file, "idCard-CN");
     console.log(result);
   }
 
