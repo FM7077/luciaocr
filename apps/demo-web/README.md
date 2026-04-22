@@ -1,6 +1,6 @@
-# @fm7077/demo-web
+# @luciaocr/demo-web
 
-React + Vite demo for validating `@fm7077/luciaocr-r`.
+React + Vite demo for validating `@luciaocr/luciaocr-r`.
 
 ## 致敬来源
 

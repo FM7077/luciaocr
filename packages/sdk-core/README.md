@@ -1,4 +1,4 @@
-# @fm7077/luciaocr-core
+# @luciaocr/luciaocr-core
 
 > `luciaocr` 的纯逻辑核心层，提供 OCR 结果解析、校验、格式化和统一错误模型
 
@@ -22,7 +22,7 @@ GitHub：[`FM7077/luciaocr`](https://github.com/FM7077/luciaocr)
 ## 安装
 
 ```bash
-npm install @fm7077/luciaocr-core
+npm install @luciaocr/luciaocr-core
 ```
 
 如果你是在当前仓库里联调，可以直接使用 workspace 包。
@@ -32,7 +32,7 @@ npm install @fm7077/luciaocr-core
 ### 方式一：解析通用文本
 
 ```js
-import { parseGeneral } from "@fm7077/luciaocr-core";
+import { parseGeneral } from "@luciaocr/luciaocr-core";
 
 const result = parseGeneral(`
 联系电话 13800138000
@@ -46,7 +46,7 @@ console.log(result);
 ### 方式二：解析身份证
 
 ```js
-import { parseIdCard, validateIdCard } from "@fm7077/luciaocr-core";
+import { parseIdCard, validateIdCard } from "@luciaocr/luciaocr-core";
 
 const text =
   "姓名 张三 性别 男 民族 汉 出生 1949年12月31日 住址 北京市朝阳区建国路88号 公民身份号码 11010519491231002X";
@@ -63,7 +63,7 @@ if (result.idNumber) {
 ### 方式三：解析银行卡
 
 ```js
-import { parseBankCard } from "@fm7077/luciaocr-core";
+import { parseBankCard } from "@luciaocr/luciaocr-core";
 
 const result = parseBankCard(
   "中国农业银行 卡号 6228 4804 0256 4890 018 有效期 12/99 持卡人 张三"
@@ -75,7 +75,7 @@ console.log(result);
 ### 方式四：解析驾驶证
 
 ```js
-import { parseDriverLicenseAuto } from "@fm7077/luciaocr-core";
+import { parseDriverLicenseAuto } from "@luciaocr/luciaocr-core";
 
 const text =
   "中华人民共和国机动车驾驶证 姓名 张三 性别 男 国籍 中国 住址 北京市朝阳区建国路88号 出生日期 1990-01-01 初次领证日期 2012-05-06 准驾车型 C1 有效期限 2020-05-06至2030-05-06 证号 110101199001011234";
@@ -215,7 +215,7 @@ console.log(result);
 ### 身份证校验
 
 ```js
-import { validateIdCard } from "@fm7077/luciaocr-core";
+import { validateIdCard } from "@luciaocr/luciaocr-core";
 
 const validation = validateIdCard("11010519491231002X");
 
@@ -226,7 +226,7 @@ console.log(validation.info);
 ### 银行卡校验
 
 ```js
-import { validateBankCard, validateBankCardExpiry } from "@fm7077/luciaocr-core";
+import { validateBankCard, validateBankCardExpiry } from "@luciaocr/luciaocr-core";
 
 console.log(validateBankCard("6228480402564890018"));
 console.log(validateBankCardExpiry("12/99"));
@@ -235,7 +235,7 @@ console.log(validateBankCardExpiry("12/99"));
 ### 手机号和邮箱校验
 
 ```js
-import { validatePhone, validateEmail } from "@fm7077/luciaocr-core";
+import { validatePhone, validateEmail } from "@luciaocr/luciaocr-core";
 
 console.log(validatePhone("13800138000"));
 console.log(validateEmail("test@example.com"));
@@ -246,7 +246,7 @@ console.log(validateEmail("test@example.com"));
 `sdk-core` 使用统一的 `OCRError`：
 
 ```js
-import { OCRError } from "@fm7077/luciaocr-core";
+import { OCRError } from "@luciaocr/luciaocr-core";
 
 throw new OCRError("PARSE_ERROR", "Failed to parse OCR result");
 ```
@@ -281,7 +281,7 @@ throw new OCRError("PARSE_ERROR", "Failed to parse OCR result");
 ## 相关文档
 
 - 仓库总览：[README.md](../../README.md)
-- Web SDK：[packages/sdk-web/README.md](../sdk-web/README.md)
+- Web SDK：[packages/sdk-react/README.md](../sdk-react/README.md)
 
 ## License
 

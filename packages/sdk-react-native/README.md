@@ -1,4 +1,4 @@
-# @fm7077/lucaiocr-rn
+# @luciaocr/lucaiocr-rn
 
 React Native runtime package for `luciaocr`.
 
@@ -12,10 +12,10 @@ with the React Native bridge and packaging adapted on top of that offline OCR fo
 
 ## What it provides
 
-- `ReactNativeOCR` controller with the same public lifecycle as `sdk-web`
+- `ReactNativeOCR` controller with the same public lifecycle as `sdk-react`
 - `OCRWebView` reusable hidden WebView container
 - OCR runtime assets bundled inside the package
-- bridge protocol aligned with `sdk-web`:
+- bridge protocol aligned with `sdk-react`:
   - `OCR_READY`
   - `OCR_PROGRESS`
   - `OCR_RESULT`
@@ -38,7 +38,7 @@ See `apps/demo-native/metro.config.cjs` for the expected setup.
 
 ```jsx
 import React from "react";
-import { OCRWebView, createReactNativeOCR } from "@fm7077/lucaiocr-rn";
+import { OCRWebView, createReactNativeOCR } from "@luciaocr/lucaiocr-rn";
 
 const ocr = createReactNativeOCR();
 

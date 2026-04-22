@@ -1,4 +1,4 @@
-# @fm7077/luciaocr-r
+# @luciaocr/luciaocr-r
 
 > 面向浏览器的离线 OCR SDK，内置 PaddleOCR 运行时资源与结构化解析能力
 
@@ -20,7 +20,7 @@ GitHub：[`FM7077/luciaocr`](https://github.com/FM7077/luciaocr)
 ## 安装
 
 ```bash
-npm install @fm7077/luciaocr-r
+npm install @luciaocr/luciaocr-r
 ```
 
 如果你是从源码工作区联调，也可以直接使用 workspace 包。
@@ -36,7 +36,7 @@ npm install @fm7077/luciaocr-r
 - 第三方资源说明：[THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md)
 
 说明：
-- 当前发布包已经做成单包可分发，安装 `@fm7077/luciaocr-r` 时不需要额外安装 `@fm7077/luciaocr-core`
+- 当前发布包已经做成单包可分发，安装 `@luciaocr/luciaocr-r` 时不需要额外安装 `@luciaocr/luciaocr-core`
 
 ## 使用方式
 
@@ -45,7 +45,7 @@ npm install @fm7077/luciaocr-r
 这是最直接的接入方式，适合大多数 Web 项目。
 
 ```js
-import { initOCR, recognize, destroyOCR } from "@fm7077/luciaocr-r";
+import { initOCR, recognize, destroyOCR } from "@luciaocr/luciaocr-r";
 
 await initOCR({
   onProgress(message) {
@@ -66,7 +66,7 @@ destroyOCR();
 如果你的页面里需要多个独立 OCR 实例，或者你不想使用默认单例，可以使用 `createWebOCR`。
 
 ```js
-import { createWebOCR } from "@fm7077/luciaocr-r";
+import { createWebOCR } from "@luciaocr/luciaocr-r";
 
 const ocr = createWebOCR({
   onProgress(message) {
@@ -91,7 +91,7 @@ ocr.destroy();
 如果你习惯以对象方式调用，也可以直接使用默认导出。
 
 ```js
-import ocr from "@fm7077/luciaocr-r";
+import ocr from "@luciaocr/luciaocr-r";
 
 await ocr.init();
 
@@ -109,7 +109,7 @@ ocr.destroy();
 
 ```jsx
 import { useEffect, useState } from "react";
-import { destroyOCR, initOCR, recognize } from "@fm7077/luciaocr-r";
+import { destroyOCR, initOCR, recognize } from "@luciaocr/luciaocr-r";
 
 export default function OCRDemo() {
   const [status, setStatus] = useState("等待初始化");
@@ -185,7 +185,7 @@ export default function OCRDemo() {
 用于指定 OCR 运行时资源所在目录。适合你把静态资源托管到自定义目录或 CDN 的场景。
 
 ```js
-import { initOCR } from "@fm7077/luciaocr-r";
+import { initOCR } from "@luciaocr/luciaocr-r";
 
 await initOCR({
   assetBaseUrl: "/ocr-runtime/",

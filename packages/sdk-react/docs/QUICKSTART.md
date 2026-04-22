@@ -5,13 +5,13 @@ GitHub: [`FM7077/luciaocr`](https://github.com/FM7077/luciaocr)
 ## Install
 
 ```bash
-npm install @fm7077/luciaocr-r
+npm install @luciaocr/luciaocr-r
 ```
 
 ## Minimal usage
 
 ```js
-import { initOCR, recognize, destroyOCR } from "@fm7077/luciaocr-r";
+import { initOCR, recognize, destroyOCR } from "@luciaocr/luciaocr-r";
 
 await initOCR();
 

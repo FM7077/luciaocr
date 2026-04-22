@@ -1,5 +1,5 @@
 {
-  "name": "@fm7077/demo-web",
+  "name": "@luciaocr/demo-web",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -12,7 +12,7 @@
     "typecheck": "echo demo-web typecheck placeholder"
   },
   "dependencies": {
-    "@fm7077/luciaocr-r": "file:../../packages/sdk-web",
+    "@luciaocr/luciaocr-r": "file:../../packages/sdk-react",
     "opencv.js": "^1.2.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"

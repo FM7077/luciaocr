@@ -1,5 +1,5 @@
 {
-  "name": "@fm7077/luciaocr-core",
+  "name": "@luciaocr/luciaocr-core",
   "version": "1.0.0",
   "private": false,
   "type": "module",

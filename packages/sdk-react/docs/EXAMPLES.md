@@ -12,7 +12,7 @@ GitHub: [`FM7077/luciaocr`](https://github.com/FM7077/luciaocr)
     <pre id="output"></pre>
 
     <script type="module">
-      import { initOCR, recognize } from "@fm7077/luciaocr-r";
+import { initOCR, recognize } from "@luciaocr/luciaocr-r";
 
       const fileInput = document.getElementById("file");
       const output = document.getElementById("output");

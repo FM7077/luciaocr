@@ -20,9 +20,9 @@
 
 | 模块 | 状态 | 说明 |
 | --- | --- | --- |
-| `@fm7077/luciaocr-r` | 已验证 | React Web / 浏览器侧已完成构建、类型检查、测试和 demo 验证 |
-| `@fm7077/luciaocr-core` | 已验证 | 纯解析逻辑已拆分并覆盖基础单元测试与回归夹具 |
-| `@fm7077/lucaiocr-rn` / `demo-native` | 未实机验证 | 代码仍保留，但 React Native 目前**未经 Android/iOS 实机测试** |
+| `@luciaocr/luciaocr-r` | 已验证 | React Web / 浏览器侧已完成构建、类型检查、测试和 demo 验证 |
+| `@luciaocr/luciaocr-core` | 已验证 | 纯解析逻辑已拆分并覆盖基础单元测试与回归夹具 |
+| `@luciaocr/lucaiocr-rn` / `demo-native` | 未实机验证 | 代码仍保留，但 React Native 目前**未经 Android/iOS 实机测试** |
 
 ## 仓库结构
 
@@ -33,7 +33,7 @@
 │   └── demo-native
 ├── packages
 │   ├── sdk-core
-│   ├── sdk-web
+│   ├── sdk-react
 │   └── sdk-react-native
 └── scripts
 ```
@@ -42,12 +42,12 @@
 
 - `packages/sdk-core`
   纯逻辑层，提供模板解析、校验器、格式化工具和统一错误模型
-- `packages/sdk-web`
-  浏览器 OCR SDK，对外发布为 `@fm7077/luciaocr-r`
+- `packages/sdk-react`
+浏览器 OCR SDK，项目名为 `sdk-react`，对外发布为 `@luciaocr/luciaocr-r`
 - `packages/sdk-react-native`
   React Native 适配层，当前保留源码，但未经实机验证
 - `apps/demo-web`
-  React + Vite demo，用于验证 `@fm7077/luciaocr-r`
+React + Vite demo，用于验证 `@luciaocr/luciaocr-r`
 - `apps/demo-native`
   React Native demo 骨架，当前仅保留源码结构
 
@@ -65,7 +65,7 @@
 如果你只需要 Web SDK：
 
 ```bash
-npm install @fm7077/luciaocr-r
+npm install @luciaocr/luciaocr-r
 ```
 
 如果你在本仓库里开发：
@@ -83,7 +83,7 @@ npm install --legacy-peer-deps
 ### 方式一：直接使用默认 SDK 方法
 
 ```js
-import { initOCR, recognize, destroyOCR } from "@fm7077/luciaocr-r";
+import { initOCR, recognize, destroyOCR } from "@luciaocr/luciaocr-r";
 
 await initOCR({
   onProgress(message) {
@@ -102,7 +102,7 @@ destroyOCR();
 ### 方式二：创建独立实例
 
 ```js
-import { createWebOCR } from "@fm7077/luciaocr-r";
+import { createWebOCR } from "@luciaocr/luciaocr-r";
 
 const ocr = createWebOCR({
   assetBaseUrl: "/ocr-runtime/",
@@ -123,7 +123,7 @@ ocr.destroy();
 ### 方式三：使用默认导出实例
 
 ```js
-import ocr from "@fm7077/luciaocr-r";
+import ocr from "@luciaocr/luciaocr-r";
 
 await ocr.init();
 const result = await ocr.recognize("data:image/png;base64,...", "general");
@@ -135,7 +135,7 @@ ocr.destroy();
 
 ### 浏览器 SDK
 
-`@fm7077/luciaocr-r` 当前对外暴露：
+`@luciaocr/luciaocr-r` 当前对外暴露：
 
 - `initOCR(options?)`
 - `recognize(input, template?, options?)`
@@ -153,7 +153,7 @@ ocr.destroy();
 
 ### 解析核心
 
-`@fm7077/luciaocr-core` 当前对外提供：
+`@luciaocr/luciaocr-core` 当前对外提供：
 
 - `parseGeneral`
 - `parseIdCard`
@@ -255,9 +255,9 @@ npm run release:check
 - 驾驶证主页解析
 - 通用文本中的电话、邮箱、日期提取
 - 每种模板 3 组文本回归样本：正常、模糊、错误类型
-- `sdk-web` 初始化成功/失败
-- `sdk-web` 文件/Blob 输入识别成功
-- `sdk-web` 资源加载失败与识别超时错误路径
+- `sdk-react` 初始化成功/失败
+- `sdk-react` 文件/Blob 输入识别成功
+- `sdk-react` 资源加载失败与识别超时错误路径
 
 尚未完成的重点：
 
@@ -267,7 +267,7 @@ npm run release:check
 
 ## 文档入口
 
-- Web SDK 说明：[packages/sdk-web/README.md](./packages/sdk-web/README.md)
+- Web SDK 说明：[packages/sdk-react/README.md](./packages/sdk-react/README.md)
 - Web demo 说明：[apps/demo-web/README.md](./apps/demo-web/README.md)
 
 ## License

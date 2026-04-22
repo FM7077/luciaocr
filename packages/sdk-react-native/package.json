@@ -1,5 +1,5 @@
 {
-  "name": "@fm7077/lucaiocr-rn",
+  "name": "@luciaocr/lucaiocr-rn",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -37,7 +37,7 @@
     "typecheck": "echo sdk-react-native typecheck placeholder"
   },
   "dependencies": {
-    "@fm7077/luciaocr-core": "file:../sdk-core"
+    "@luciaocr/luciaocr-core": "file:../sdk-core"
   },
   "peerDependencies": {
     "react": ">=18",

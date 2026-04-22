@@ -4,14 +4,14 @@ GitHub: [`FM7077/luciaocr`](https://github.com/FM7077/luciaocr)
 
 ## 1.0.1 - 2026-04-22
 
-Repacked `@fm7077/luciaocr-r` for npm publish after `1.0.0` was already used.
+Repacked `@luciaocr/luciaocr-r` for npm publish after `1.0.0` was already used.
 
 - bump package version to `1.0.1`
 - refresh tarball for the next public publish
 
 ## 1.0.0 - 2026-04-21
 
-Initial public release candidate for `@fm7077/luciaocr-r`.
+Initial public release candidate for `@luciaocr/luciaocr-r`.
 
 - browser-only offline OCR SDK with bundled runtime assets
 - built-in templates: `general`, `idCard`, `bankCard`, `driverLicense`

@@ -4,7 +4,7 @@ import {
   parseDriverLicenseAuto,
   parseGeneral,
   parseIdCard,
-} from "@fm7077/luciaocr-core";
+} from "@luciaocr/luciaocr-core";
 
 export const SDK_WEB_VERSION = "1.0.1";
 export const DEFAULT_TEMPLATE = "general";

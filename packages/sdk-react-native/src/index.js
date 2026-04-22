@@ -7,7 +7,7 @@ import {
   parseDriverLicenseAuto,
   parseGeneral,
   parseIdCard,
-} from "@fm7077/luciaocr-core";
+} from "@luciaocr/luciaocr-core";
 import createEngineDocument from "./engineDocument.js";
 import {
   createRuntimeAssetResolver,
