@@ -1,6 +1,6 @@
 {
   "name": "@luciaocr/web",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "private": false,
   "type": "module",
   "description": "Browser OCR runtime with bundled PaddleOCR assets and a stable iframe bridge.",
