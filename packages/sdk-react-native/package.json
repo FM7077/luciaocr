@@ -15,28 +15,28 @@
   "bugs": {
     "url": "https://github.com/FM7077/luciaocr/issues"
   },
-  "main": "./src/index.js",
-  "module": "./src/index.js",
-  "types": "./src/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./src/index.d.ts",
-      "import": "./src/index.js",
-      "default": "./src/index.js"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
     }
   },
   "files": [
-    "src"
+    "dist"
   ],
   "sideEffects": false,
   "scripts": {
-    "build": "echo sdk-react-native build placeholder",
-    "clean": "echo sdk-react-native clean placeholder",
+    "build": "node ../../scripts/build-sdk-react-native.mjs",
+    "clean": "node ../../scripts/clean-package.mjs dist",
     "lint": "echo sdk-react-native lint placeholder",
     "test": "echo sdk-react-native test placeholder",
     "typecheck": "echo sdk-react-native typecheck placeholder"
   },
-  "dependencies": {
+  "devDependencies": {
     "@luciaocr/core": "^1.0.0"
   },
   "peerDependencies": {

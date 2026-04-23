@@ -1,8 +1,84 @@
 import type { ComponentType } from "react";
-import type {
-  OCRResult,
-  OCRTemplate,
-} from "@luciaocr/core";
+
+export type OCRTemplate =
+  | "general"
+  | "idCard-CN"
+  | "bankCard"
+  | "driverLicense-CN";
+
+export interface OCRResultBase {
+  text?: string;
+  rawText?: string;
+  lines?: string[];
+  duration?: number;
+  valid: boolean;
+}
+
+export interface GeneralTextResult extends OCRResultBase {
+  cleanText?: string;
+  wordCount?: number;
+  charCount?: number;
+  extracted?: {
+    numbers?: Array<{ value: string; numeric: number }>;
+    dates?: Array<{ original: string; formatted: string | null }>;
+    emails?: string[];
+    phones?: Array<{ number: string; type: string }>;
+    urls?: string[];
+  };
+}
+
+export interface IdCardResult extends OCRResultBase {
+  side?: "front" | "back" | "unknown";
+  name?: string;
+  gender?: string;
+  ethnicity?: string;
+  birthDate?: string;
+  address?: string;
+  idNumber?: string;
+  authority?: string;
+  validPeriod?: {
+    start: string;
+    end: string;
+  };
+  isExpired?: boolean;
+}
+
+export interface BankCardResult extends OCRResultBase {
+  cardNumber?: string;
+  cardNumberFormatted?: string;
+  bankName?: string;
+  cardType?: string;
+  expiryDate?: string;
+  holderName?: string;
+  isExpired?: boolean;
+}
+
+export interface DriverLicenseResult extends OCRResultBase {
+  page?: "main" | "sub" | "unknown";
+  licenseNumber?: string;
+  name?: string;
+  gender?: string;
+  nationality?: string;
+  address?: string;
+  birthDate?: string;
+  firstIssueDate?: string;
+  licenseClass?: string;
+  licenseClassDesc?: string;
+  validPeriod?: {
+    start: string;
+    end: string;
+  };
+  issueAuthority?: string;
+  archiveNumber?: string;
+  record?: string;
+  isExpired?: boolean;
+}
+
+export type OCRResult =
+  | GeneralTextResult
+  | IdCardResult
+  | BankCardResult
+  | DriverLicenseResult;
 
 export interface ReactNativeImageSource {
   uri?: string;

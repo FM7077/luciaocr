@@ -12,7 +12,7 @@
     "typecheck": "echo demo-vue typecheck placeholder"
   },
   "dependencies": {
-    "@luciaocr/vue": "file:../../packages/sdk-vue",
+    "@luciaocr/vue": "file:../../packages/sdk-vue/luciaocr-vue-1.0.0.tgz",
     "opencv.js": "^1.2.1",
     "vue": "^3.5.13"
   },

@@ -14,35 +14,35 @@
   "bugs": {
     "url": "https://github.com/FM7077/luciaocr/issues"
   },
-  "main": "./src/index.js",
-  "module": "./src/index.js",
-  "types": "./src/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./src/index.d.ts",
-      "import": "./src/index.js",
-      "default": "./src/index.js"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
     },
     "./package.json": "./package.json"
   },
   "files": [
-    "src",
+    "dist",
     "README.md"
   ],
   "sideEffects": false,
   "scripts": {
-    "build": "echo sdk-angular build placeholder",
-    "clean": "echo sdk-angular clean placeholder",
+    "build": "node ../../scripts/build-sdk-angular.mjs",
+    "clean": "node ../../scripts/clean-package.mjs dist",
     "lint": "echo sdk-angular lint placeholder",
     "test": "echo sdk-angular test placeholder",
     "typecheck": "echo sdk-angular typecheck placeholder"
   },
-  "dependencies": {
+  "devDependencies": {
     "@luciaocr/web": "^1.0.0"
   },
   "peerDependencies": {
-    "@angular/core": ">=15",
-    "@angular/common": ">=15"
+    "@angular/core": "^20.0.0",
+    "@angular/common": "^20.0.0"
   },
   "publishConfig": {
     "access": "public"
