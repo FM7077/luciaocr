@@ -36,7 +36,7 @@ export default function App() {
 
       try {
         await initOCR({
-          assetBaseUrl: "/ocr-runtime/",
+          initTimeout: 120000,
           onProgress(message) {
             if (!disposed) {
               setStatusText(message);

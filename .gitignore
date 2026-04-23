@@ -7,3 +7,5 @@ dist/
 apps/demo-angular/.angular/
 .tmp/
 *.tgz
+.tmp-chrome-profile/
+.tmp*

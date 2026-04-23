@@ -1,6 +1,7 @@
 import { cp, mkdir, rm } from "node:fs/promises";
 import { resolve } from "node:path";
 import { build } from "esbuild";
+import { stripRuntimeSourcemaps } from "./strip-runtime-sourcemaps.mjs";
 
 const packageDir = process.cwd();
 const repoRoot = resolve(packageDir, "..", "..");
@@ -30,3 +31,4 @@ await cp(
 await cp(webRuntimeDir, resolve(outDir, "runtime"), {
   recursive: true,
 });
+await stripRuntimeSourcemaps(resolve(outDir, "runtime"));

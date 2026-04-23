@@ -27,6 +27,7 @@ const RUNTIME_ASSET_MANIFEST = {
 };
 
 const DEFAULT_RUNTIME_ASSETS = {
+  baseUrl: new URL("./runtime/", import.meta.url).href,
   scripts: {
     ort: new URL("./runtime/ort.min.js", import.meta.url).href,
     openCv: new URL("./runtime/opencv.js", import.meta.url).href,
@@ -105,9 +106,72 @@ function createEngineDocument(runtimeAssets) {
     <title>luciaocr Web Engine</title>
     <script>
       window.__LF_OCR_RUNTIME_CONFIG__ = ${config};
+      window.__LF_OCR_BOOT_ERROR__ = null;
+      window.__LF_OCR_RUNTIME_BOOT__ = null;
+      window.addEventListener("error", (event) => {
+        const message =
+          event && event.error && event.error.message
+            ? event.error.message
+            : event && event.message
+              ? event.message
+              : "Unknown runtime script error";
+        window.__LF_OCR_BOOT_ERROR__ = message;
+      });
+      window.addEventListener("unhandledrejection", (event) => {
+        const reason = event && event.reason;
+        const message =
+          reason && reason.message
+            ? reason.message
+            : typeof reason === "string"
+              ? reason
+              : "Unhandled runtime promise rejection";
+        window.__LF_OCR_BOOT_ERROR__ = message;
+      });
+      function sanitizeRuntimeScriptSource(source) {
+        const viteInjectQueryImport =
+          /^import\\s+\\{\\s*injectQuery\\s+as\\s+__vite__injectQuery\\s*\\}\\s+from\\s+["']\\/@vite\\/client["'];?\\s*/;
+
+        if (!viteInjectQueryImport.test(source)) {
+          return source;
+        }
+
+        return (
+          "const __vite__injectQuery = (url) => url;\\n" +
+          source.replace(viteInjectQueryImport, "")
+        );
+      }
+
+      async function loadClassicRuntimeScript(url, label) {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error("Failed to load " + label);
+        }
+
+        const source = sanitizeRuntimeScriptSource(await response.text());
+        const script = document.createElement("script");
+        script.text = source + "\\n//# sourceURL=" + url.replace(/\\n/g, "");
+        document.head.appendChild(script);
+      }
+
+      window.__LF_OCR_RUNTIME_BOOT__ = (async () => {
+        await loadClassicRuntimeScript("${ortUrl}", "ONNX Runtime script");
+        await loadClassicRuntimeScript("${openCvUrl}", "OpenCV script");
+
+        if (typeof globalThis.ort === "undefined" && typeof ort !== "undefined") {
+          globalThis.ort = ort;
+        }
+
+        if (
+          typeof window.ort === "undefined" &&
+          typeof globalThis.ort !== "undefined"
+        ) {
+          window.ort = globalThis.ort;
+        }
+      })().catch((error) => {
+        window.__LF_OCR_BOOT_ERROR__ =
+          error && error.message ? error.message : "Failed to boot OCR runtime";
+      });
     </script>
-    <script src="${ortUrl}"></script>
-    <script src="${openCvUrl}"></script>
     <style>
       body {
         margin: 0;
@@ -125,16 +189,21 @@ function createEngineDocument(runtimeAssets) {
 
     <script type="module">
       const runtimeConfig = window.__LF_OCR_RUNTIME_CONFIG__;
-      const { init: paddleInit, ocr: paddleOCR } = await import(
-        runtimeConfig.scripts.esearchOcr
-      );
+      try {
+        const { init: paddleInit, ocr: paddleOCR } = await import(
+          runtimeConfig.scripts.esearchOcr
+        );
 
-      window.Paddle = {
-        init: paddleInit,
-        recognize: paddleOCR,
-      };
+        window.Paddle = {
+          init: paddleInit,
+          recognize: paddleOCR,
+        };
 
-      window.dispatchEvent(new Event("paddleReady"));
+        window.dispatchEvent(new Event("paddleReady"));
+      } catch (error) {
+        window.__LF_OCR_BOOT_ERROR__ =
+          error && error.message ? error.message : "Failed to load PaddleOCR runtime";
+      }
     </script>
 
     <script>
@@ -148,6 +217,28 @@ function createEngineDocument(runtimeAssets) {
       let isInitializing = false;
       let ocrFunction = null;
       let hostOrigin = "*";
+
+      function getBootError() {
+        return window.__LF_OCR_BOOT_ERROR__;
+      }
+
+      function getOrtApi() {
+        if (typeof window.ort !== "undefined") {
+          return window.ort;
+        }
+
+        if (typeof globalThis.ort !== "undefined") {
+          window.ort = globalThis.ort;
+          return window.ort;
+        }
+
+        if (typeof ort !== "undefined") {
+          window.ort = ort;
+          return window.ort;
+        }
+
+        return undefined;
+      }
 
       function postToHost(payload) {
         window.parent.postMessage(
@@ -196,17 +287,39 @@ function createEngineDocument(runtimeAssets) {
         isInitializing = true;
 
         try {
-          if (window.ort && window.ort.env && window.ort.env.wasm) {
-            window.ort.env.wasm.wasmPaths = runtimeConfig.baseUrl || runtimeConfig.wasm;
+          postProgress("Loading OpenCV...");
+          if (window.__LF_OCR_RUNTIME_BOOT__) {
+            await window.__LF_OCR_RUNTIME_BOOT__;
           }
 
-          postProgress("Loading OpenCV...");
           while (typeof cv === "undefined" || !cv.Mat) {
+            if (getBootError()) {
+              throw new Error(getBootError());
+            }
             await new Promise((resolve) => setTimeout(resolve, 100));
+          }
+
+          postProgress("Loading ONNX Runtime...");
+          while (
+            typeof getOrtApi() === "undefined" ||
+            !getOrtApi().InferenceSession
+          ) {
+            if (getBootError()) {
+              throw new Error(getBootError());
+            }
+            await new Promise((resolve) => setTimeout(resolve, 100));
+          }
+
+          const ortApi = getOrtApi();
+          if (ortApi && ortApi.env && ortApi.env.wasm) {
+            ortApi.env.wasm.wasmPaths = runtimeConfig.baseUrl || runtimeConfig.wasm;
           }
 
           postProgress("Loading PaddleOCR...");
           while (typeof window.Paddle === "undefined") {
+            if (getBootError()) {
+              throw new Error(getBootError());
+            }
             await new Promise((resolve) => setTimeout(resolve, 100));
           }
 
@@ -232,7 +345,7 @@ function createEngineDocument(runtimeAssets) {
             detPath: detBlobUrl,
             recPath: recBlobUrl,
             dic: dictionary,
-            ort: window.ort,
+            ort: ortApi,
             node: false,
             cv: window.cv,
           });
@@ -378,26 +491,29 @@ function resolveAssetUrl(relativePath, importedUrl, assetBaseUrl, assetResolver)
 
 function createRuntimeAssets(assetBaseUrl, assetResolver) {
   const normalizedBaseUrl = normalizeBaseUrl(assetBaseUrl);
+  const resolvedBaseUrl =
+    normalizedBaseUrl ||
+    DEFAULT_RUNTIME_ASSETS.baseUrl;
 
   return {
-    baseUrl: normalizedBaseUrl,
+    baseUrl: resolvedBaseUrl,
     scripts: {
       ort: resolveAssetUrl(
         "ort.min.js",
         DEFAULT_RUNTIME_ASSETS.scripts.ort,
-        normalizedBaseUrl,
+        resolvedBaseUrl,
         assetResolver
       ),
       openCv: resolveAssetUrl(
         "opencv.js",
         DEFAULT_RUNTIME_ASSETS.scripts.openCv,
-        normalizedBaseUrl,
+        resolvedBaseUrl,
         assetResolver
       ),
       esearchOcr: resolveAssetUrl(
         "esearch-ocr.js",
         DEFAULT_RUNTIME_ASSETS.scripts.esearchOcr,
-        normalizedBaseUrl,
+        resolvedBaseUrl,
         assetResolver
       ),
     },
@@ -405,25 +521,25 @@ function createRuntimeAssets(assetBaseUrl, assetResolver) {
       "ort-wasm-simd-threaded.wasm": resolveAssetUrl(
         "ort-wasm-simd-threaded.wasm",
         DEFAULT_RUNTIME_ASSETS.wasm["ort-wasm-simd-threaded.wasm"],
-        normalizedBaseUrl,
+        resolvedBaseUrl,
         assetResolver
       ),
       "ort-wasm-simd-threaded.mjs": resolveAssetUrl(
         "ort-wasm-simd-threaded.mjs",
         DEFAULT_RUNTIME_ASSETS.wasm["ort-wasm-simd-threaded.mjs"],
-        normalizedBaseUrl,
+        resolvedBaseUrl,
         assetResolver
       ),
       "ort-wasm-simd-threaded.jsep.wasm": resolveAssetUrl(
         "ort-wasm-simd-threaded.jsep.wasm",
         DEFAULT_RUNTIME_ASSETS.wasm["ort-wasm-simd-threaded.jsep.wasm"],
-        normalizedBaseUrl,
+        resolvedBaseUrl,
         assetResolver
       ),
       "ort-wasm-simd-threaded.jsep.mjs": resolveAssetUrl(
         "ort-wasm-simd-threaded.jsep.mjs",
         DEFAULT_RUNTIME_ASSETS.wasm["ort-wasm-simd-threaded.jsep.mjs"],
-        normalizedBaseUrl,
+        resolvedBaseUrl,
         assetResolver
       ),
     },
@@ -431,19 +547,19 @@ function createRuntimeAssets(assetBaseUrl, assetResolver) {
       det: resolveAssetUrl(
         "models/ppocr_det.onnx",
         DEFAULT_RUNTIME_ASSETS.models.det,
-        normalizedBaseUrl,
+        resolvedBaseUrl,
         assetResolver
       ),
       rec: resolveAssetUrl(
         "models/ppocr_rec.onnx",
         DEFAULT_RUNTIME_ASSETS.models.rec,
-        normalizedBaseUrl,
+        resolvedBaseUrl,
         assetResolver
       ),
       dict: resolveAssetUrl(
         "models/ppocr_keys_v1.txt",
         DEFAULT_RUNTIME_ASSETS.models.dict,
-        normalizedBaseUrl,
+        resolvedBaseUrl,
         assetResolver
       ),
     },
@@ -526,6 +642,7 @@ export class WebOCR {
     this.initPromise = null;
     this.pendingRequests = new Map();
     this.requestCounter = 0;
+    this.lastProgressMessage = "";
     this.handleMessage = this.handleMessage.bind(this);
   }
 
@@ -610,10 +727,13 @@ export class WebOCR {
       const iframe = this.createFrame();
       const timeoutId = setTimeout(() => {
         this.initPromise = null;
+        const detail = this.lastProgressMessage
+          ? ` Last progress: ${this.lastProgressMessage}.`
+          : "";
         reject(
           new OCRError(
             "ENGINE_INIT_FAILED",
-            "OCR engine initialization timed out"
+            `OCR engine initialization timed out.${detail}`
           )
         );
       }, this.initTimeout);
@@ -714,6 +834,7 @@ export class WebOCR {
     }
 
     if (message.type === "OCR_PROGRESS") {
+      this.lastProgressMessage = message.message || "";
       if (this.onProgress) {
         this.onProgress(message.message);
       }
