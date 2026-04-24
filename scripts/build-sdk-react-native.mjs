@@ -7,11 +7,13 @@ const packageDir = process.cwd();
 const repoRoot = resolve(packageDir, "..", "..");
 const outDir = resolve(packageDir, "dist");
 const srcDir = resolve(packageDir, "src");
+const webPackageDir = resolve(repoRoot, "packages", "sdk-web");
+const webRuntimeDir = resolve(webPackageDir, "src", "runtime");
 
 await rm(outDir, { force: true, recursive: true });
 await mkdir(outDir, { recursive: true });
 
-await cp(resolve(srcDir, "runtime"), resolve(outDir, "runtime"), {
+await cp(webRuntimeDir, resolve(outDir, "runtime"), {
   recursive: true,
 });
 await stripRuntimeSourcemaps(resolve(outDir, "runtime"));

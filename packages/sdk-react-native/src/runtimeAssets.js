@@ -111,6 +111,14 @@ export function createRuntimeAssetResolver(assetResolver) {
         "ort-wasm-simd-threaded.jsep.mjs",
         defaultAssets.wasm["ort-wasm-simd-threaded.jsep.mjs"]
       ),
+      wasm: resolveWithOverride(
+        "ort-wasm-simd-threaded.jsep.wasm",
+        defaultAssets.wasm["ort-wasm-simd-threaded.jsep.wasm"]
+      ),
+      mjs: resolveWithOverride(
+        "ort-wasm-simd-threaded.jsep.mjs",
+        defaultAssets.wasm["ort-wasm-simd-threaded.jsep.mjs"]
+      ),
     },
     models: {
       det: resolveWithOverride("models/ppocr_det.onnx", defaultAssets.models.det),

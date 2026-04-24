@@ -78,6 +78,19 @@ export function createEngineDocument(runtimeAssets) {
         });
       }
 
+      function configureOrtWasmPaths() {
+        if (window.ort && window.ort.env && window.ort.env.wasm) {
+          const wasmAssets = runtimeConfig.wasm || {};
+          window.ort.env.wasm.wasmPaths =
+            wasmAssets.mjs && wasmAssets.wasm
+              ? {
+                  mjs: wasmAssets.mjs,
+                  wasm: wasmAssets.wasm,
+                }
+              : runtimeConfig.baseUrl;
+        }
+      }
+
       async function requestText(url, errorMessage) {
         const response = await fetch(url);
         if (!response.ok) {
@@ -108,9 +121,7 @@ export function createEngineDocument(runtimeAssets) {
         isInitializing = true;
 
         try {
-          if (window.ort && window.ort.env && window.ort.env.wasm) {
-            window.ort.env.wasm.wasmPaths = runtimeConfig.wasm;
-          }
+          configureOrtWasmPaths();
 
           postProgress("Loading OpenCV...");
           while (typeof window.cv === "undefined" || !window.cv.Mat) {

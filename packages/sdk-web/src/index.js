@@ -27,7 +27,7 @@ const RUNTIME_ASSET_MANIFEST = {
 };
 
 const DEFAULT_RUNTIME_ASSETS = {
-  baseUrl: new URL("./runtime/", import.meta.url).href,
+  baseUrl: null,
   scripts: {
     ort: new URL("./runtime/ort.min.js", import.meta.url).href,
     openCv: new URL("./runtime/opencv.js", import.meta.url).href,
@@ -153,20 +153,45 @@ function createEngineDocument(runtimeAssets) {
         document.head.appendChild(script);
       }
 
+      function getOrtApi() {
+        if (typeof window.ort !== "undefined") {
+          return window.ort;
+        }
+
+        if (typeof globalThis.ort !== "undefined") {
+          window.ort = globalThis.ort;
+          return window.ort;
+        }
+
+        if (typeof ort !== "undefined") {
+          window.ort = ort;
+          return window.ort;
+        }
+
+        return undefined;
+      }
+
+      function configureOrtWasmPaths() {
+        const ortApi = getOrtApi();
+        if (ortApi && ortApi.env && ortApi.env.wasm) {
+          const wasmAssets = window.__LF_OCR_RUNTIME_CONFIG__.wasm || {};
+          ortApi.env.wasm.wasmPaths =
+            wasmAssets.mjs && wasmAssets.wasm
+              ? {
+                  mjs: wasmAssets.mjs,
+                  wasm: wasmAssets.wasm,
+                }
+              : window.__LF_OCR_RUNTIME_CONFIG__.baseUrl;
+        }
+      }
+
       window.__LF_OCR_RUNTIME_BOOT__ = (async () => {
         await loadClassicRuntimeScript("${ortUrl}", "ONNX Runtime script");
+        configureOrtWasmPaths();
         await loadClassicRuntimeScript("${openCvUrl}", "OpenCV script");
 
-        if (typeof globalThis.ort === "undefined" && typeof ort !== "undefined") {
-          globalThis.ort = ort;
-        }
-
-        if (
-          typeof window.ort === "undefined" &&
-          typeof globalThis.ort !== "undefined"
-        ) {
-          window.ort = globalThis.ort;
-        }
+        getOrtApi();
+        configureOrtWasmPaths();
       })().catch((error) => {
         window.__LF_OCR_BOOT_ERROR__ =
           error && error.message ? error.message : "Failed to boot OCR runtime";
@@ -312,7 +337,13 @@ function createEngineDocument(runtimeAssets) {
 
           const ortApi = getOrtApi();
           if (ortApi && ortApi.env && ortApi.env.wasm) {
-            ortApi.env.wasm.wasmPaths = runtimeConfig.baseUrl || runtimeConfig.wasm;
+            ortApi.env.wasm.wasmPaths =
+              runtimeConfig.wasm && runtimeConfig.wasm.mjs && runtimeConfig.wasm.wasm
+                ? {
+                    mjs: runtimeConfig.wasm.mjs,
+                    wasm: runtimeConfig.wasm.wasm,
+                  }
+                : runtimeConfig.baseUrl;
           }
 
           postProgress("Loading PaddleOCR...");
@@ -494,6 +525,7 @@ function createRuntimeAssets(assetBaseUrl, assetResolver) {
   const resolvedBaseUrl =
     normalizedBaseUrl ||
     DEFAULT_RUNTIME_ASSETS.baseUrl;
+  const assetUrlBase = normalizedBaseUrl || null;
 
   return {
     baseUrl: resolvedBaseUrl,
@@ -501,19 +533,19 @@ function createRuntimeAssets(assetBaseUrl, assetResolver) {
       ort: resolveAssetUrl(
         "ort.min.js",
         DEFAULT_RUNTIME_ASSETS.scripts.ort,
-        resolvedBaseUrl,
+        assetUrlBase,
         assetResolver
       ),
       openCv: resolveAssetUrl(
         "opencv.js",
         DEFAULT_RUNTIME_ASSETS.scripts.openCv,
-        resolvedBaseUrl,
+        assetUrlBase,
         assetResolver
       ),
       esearchOcr: resolveAssetUrl(
         "esearch-ocr.js",
         DEFAULT_RUNTIME_ASSETS.scripts.esearchOcr,
-        resolvedBaseUrl,
+        assetUrlBase,
         assetResolver
       ),
     },
@@ -521,25 +553,37 @@ function createRuntimeAssets(assetBaseUrl, assetResolver) {
       "ort-wasm-simd-threaded.wasm": resolveAssetUrl(
         "ort-wasm-simd-threaded.wasm",
         DEFAULT_RUNTIME_ASSETS.wasm["ort-wasm-simd-threaded.wasm"],
-        resolvedBaseUrl,
+        assetUrlBase,
         assetResolver
       ),
       "ort-wasm-simd-threaded.mjs": resolveAssetUrl(
         "ort-wasm-simd-threaded.mjs",
         DEFAULT_RUNTIME_ASSETS.wasm["ort-wasm-simd-threaded.mjs"],
-        resolvedBaseUrl,
+        assetUrlBase,
         assetResolver
       ),
       "ort-wasm-simd-threaded.jsep.wasm": resolveAssetUrl(
         "ort-wasm-simd-threaded.jsep.wasm",
         DEFAULT_RUNTIME_ASSETS.wasm["ort-wasm-simd-threaded.jsep.wasm"],
-        resolvedBaseUrl,
+        assetUrlBase,
         assetResolver
       ),
       "ort-wasm-simd-threaded.jsep.mjs": resolveAssetUrl(
         "ort-wasm-simd-threaded.jsep.mjs",
         DEFAULT_RUNTIME_ASSETS.wasm["ort-wasm-simd-threaded.jsep.mjs"],
-        resolvedBaseUrl,
+        assetUrlBase,
+        assetResolver
+      ),
+      wasm: resolveAssetUrl(
+        "ort-wasm-simd-threaded.jsep.wasm",
+        DEFAULT_RUNTIME_ASSETS.wasm["ort-wasm-simd-threaded.jsep.wasm"],
+        assetUrlBase,
+        assetResolver
+      ),
+      mjs: resolveAssetUrl(
+        "ort-wasm-simd-threaded.jsep.mjs",
+        DEFAULT_RUNTIME_ASSETS.wasm["ort-wasm-simd-threaded.jsep.mjs"],
+        assetUrlBase,
         assetResolver
       ),
     },
@@ -547,19 +591,19 @@ function createRuntimeAssets(assetBaseUrl, assetResolver) {
       det: resolveAssetUrl(
         "models/ppocr_det.onnx",
         DEFAULT_RUNTIME_ASSETS.models.det,
-        resolvedBaseUrl,
+        assetUrlBase,
         assetResolver
       ),
       rec: resolveAssetUrl(
         "models/ppocr_rec.onnx",
         DEFAULT_RUNTIME_ASSETS.models.rec,
-        resolvedBaseUrl,
+        assetUrlBase,
         assetResolver
       ),
       dict: resolveAssetUrl(
         "models/ppocr_keys_v1.txt",
         DEFAULT_RUNTIME_ASSETS.models.dict,
-        resolvedBaseUrl,
+        assetUrlBase,
         assetResolver
       ),
     },
